@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PolicyRule name="NetGovern Media Types - Audio-Video" siteSpecific="false" template="cf2d9255-0030-406e-832b-7544438bd469" uuid="3c6649dc-5340-46d9-8a48-aa77f31ee921">
+    <WhatToFind>
+        <ScopedMediaTypes includeBody="true" onlyTopAttachments="false" selection="anyof" uuid="6769d54a-fd76-4ad1-bef0-3cd7a37029b3">
+            <MediaType>66488af3-027f-43c6-828b-be2801be7392</MediaType>
+            <MediaType>43ad0f09-c65d-4e2e-85e3-ef90b177f44b</MediaType>
+            <MediaType>a86aaab6-6835-4070-8528-ac0a07d6712b</MediaType>
+            <MediaType>8f78b180-29d2-440d-a8a9-82b873c60f9d</MediaType>
+            <MediaType>6461d61a-6f63-4e10-84b1-7acc100c97a1</MediaType>
+            <MediaType>86169f39-7c39-462f-8bac-cafab735d67a</MediaType>
+            <MediaType>803a7d04-dc70-4a1b-a2c7-59f5e0f2371b</MediaType>
+            <MediaType>fae2d28d-56d5-4468-a6c1-a25e7fcc9985</MediaType>
+            <MediaType>b29dfae8-0b58-42f3-995f-f68ba488f5f7</MediaType>
+            <MediaType>38ef6a7d-e144-49de-a415-a9cbd2f1560d</MediaType>
+            <MediaType>48848fac-1b67-4e54-ada4-10d8dfd85d76</MediaType>
+            <MediaType>23d3ec81-e267-42ad-9baa-0977bcbbd5af</MediaType>
+            <MediaType>07721e88-0d91-4849-8585-bf18d08bb4e2</MediaType>
+            <MediaType>65801d4d-e14c-4a6a-9536-80cf267c5a0e</MediaType>
+            <MediaType>ade3e20e-158d-4bac-9290-e7d2d85c67bb</MediaType>
+            <MediaType>fbcf0b21-86bc-4618-ab75-4197a29fabde</MediaType>
+            <MediaType>46c2669b-7ab5-425a-b650-166ce6d8ffd1</MediaType>
+            <MediaType>d287d744-b39c-4d42-ae49-b9f952973065</MediaType>
+            <MediaType>391e52fd-d14c-4313-ad36-be81e15dfce2</MediaType>
+            <MediaType>75f7d9bd-c396-4e88-903b-64d410681e21</MediaType>
+            <MediaType>a17f9ab8-9a66-4965-b9d2-88352123d628</MediaType>
+            <MediaType>44086213-9121-491a-bb9f-95e6f86c531f</MediaType>
+            <MediaType>c9be71c8-ac61-4e8d-b5cb-3083e376340b</MediaType>
+            <MediaType>e1abed84-fcbd-4501-a963-2f3e02939bce</MediaType>
+            <MediaType>42750d8c-d3cc-4483-8ffc-af50c12f854a</MediaType>
+            <MediaType>eae4d3d0-febc-49ad-b513-2a191dcb9831</MediaType>
+            <MediaType>51c06536-b0ed-4deb-8459-5d09b63e0c2c</MediaType>
+            <MediaType>aa0d2046-a9e4-4589-9582-90711f0e7f1c</MediaType>
+            <MediaType>74b43cbc-c3d6-4656-b89c-390cdfb5cf45</MediaType>
+            <MediaType>06acb775-dafc-4616-b7ea-0652a395e353</MediaType>
+            <MediaType>5d963278-7fa1-4aae-9033-0a2aaa597fb0</MediaType>
+            <MediaType>5182952d-c80d-45be-afdb-a2c0274645d6</MediaType>
+        </ScopedMediaTypes>
+        <SizeLimit enabled="false" limit="ge" threshold="0" uuid="ca565ece-7f47-4614-9481-880b66a3071a"/>
+        <Filenames exclusive="false" uuid="ac079b92-bab9-4f64-9fa1-f5f60cff16f4"/>
+        <Direction direction="either" uuid="97c2dc46-0d26-4187-8979-e596175b5c37"/>
+    </WhatToFind>
+    <WhatToDo>
+        <Disposal disposal="007bcaf4-76c0-47bc-ad33-8a494c7f7dc3" primaryCrypto="UNDEFINED" secondary="95d778e0-4baa-4266-b572-db1a8bd12333" secondaryCrypto="UNDEFINED" uuid="6d7b9161-2171-42aa-8adf-5af2e519473a"/>
+    </WhatToDo>
+    <WhatToDoWeb>
+        <PrimaryWebAction editable="true" type="allow" uuid="c41a830d-54db-4a31-a46f-b62a062606a5"/>
+    </WhatToDoWeb>
+    <WhatElseToDo/>
+</PolicyRule>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PolicyRule name="NetGovern Media Types - Executable and Scripts" siteSpecific="false" template="cf2d9255-0030-406e-832b-7544438bd469" uuid="1b326246-ccee-4375-99b7-b4fcf8225b19">
+    <WhatToFind>
+        <ScopedMediaTypes includeBody="true" onlyTopAttachments="false" selection="anyof" uuid="3779a331-3e13-47af-a9df-e11cafcfcf32">
+            <MediaType>07929bd7-2eee-48c9-a15e-1c5bf40c27e5</MediaType>
+            <MediaType>18f4503f-1db4-43c0-9923-1d5f4cd09dcb</MediaType>
+            <MediaType>e78fb1bd-095a-4148-93fa-26a7483601de</MediaType>
+            <MediaType>8f21b2d9-ea08-4d39-a35e-5fc02f5db578</MediaType>
+            <MediaType>586f8b47-4cbf-4b8a-b340-96b443d2881b</MediaType>
+            <MediaType>83cd6910-8aa2-4b99-aded-38fdc8d03d34</MediaType>
+            <MediaType>5304782b-8129-44a8-850a-158b325546cd</MediaType>
+            <MediaType>f18a5dfe-6e72-441d-a466-b7a436730820</MediaType>
+            <MediaType>09a173e4-1e3c-435d-8d2d-275801ddd756</MediaType>
+            <MediaType>577769b7-0077-4629-bc7b-6d0bbfd85082</MediaType>
+            <MediaType>1e01150c-dc68-4f28-a8eb-badbdb1824a9</MediaType>
+            <MediaType>32a8673c-6723-4742-a245-d3f59277c130</MediaType>
+            <MediaType>d42b1339-e621-4f88-b64b-26cbdb239a2f</MediaType>
+            <MediaType>fb7a20b2-23e0-4753-bb3d-ab69ac85b65d</MediaType>
+            <MediaType>0a02df41-5d31-46f6-b891-7c732c68da7b</MediaType>
+            <MediaType>93322e7a-8a59-4d88-a4f1-09a2ef54742b</MediaType>
+            <MediaType>38066275-5b50-4294-a272-5ff68eac9896</MediaType>
+            <MediaType>c72a189f-aacd-4f9c-a41a-19c701aa5d10</MediaType>
+            <MediaType>4487e11d-70cd-4ebc-ace1-0706491b3f4a</MediaType>
+            <MediaType digsign="true" notprotect="true">dc5b0026-008c-4a53-8a52-aa6e9ff5f5a3</MediaType>
+            <MediaType>1d1135f3-cb09-4543-b85a-0776a763ffb9</MediaType>
+            <MediaType>19f0afd5-caee-43c1-bb42-8d7ef781bb42</MediaType>
+            <MediaType>b67997d8-495d-4ada-b6cc-181fb1120cce</MediaType>
+            <MediaType>d5266c76-31ea-4d3f-b465-5878db7c0e6a</MediaType>
+            <MediaType>79d88742-0e27-4389-b520-93f3a9c4b19b</MediaType>
+            <MediaType>77900d0d-d2f3-47d8-94a4-421d29afd696</MediaType>
+        </ScopedMediaTypes>
+        <SizeLimit enabled="false" limit="ge" threshold="0" uuid="b0109c45-04b5-41e3-92b0-64b16e42bba3"/>
+        <Filenames exclusive="false" uuid="33a89eb8-af38-48cd-9b9a-cdbe61fea198"/>
+        <Direction direction="either" uuid="70bc2778-11e3-422d-9aa3-6e61a1e69736"/>
+    </WhatToFind>
+    <WhatToDo>
+        <Disposal disposal="8870ce48-7012-48d7-9ee4-f5498c5d3631" primaryCrypto="UNDEFINED" secondary="95d778e0-4baa-4266-b572-db1a8bd12333" secondaryCrypto="UNDEFINED" uuid="18243852-0962-4a4f-b7ea-686bc7d007fb"/>
+    </WhatToDo>
+    <WhatToDoWeb>
+        <PrimaryWebAction editable="true" type="allow" uuid="6395d611-125d-4864-a9ec-b9d4e0b885b3"/>
+    </WhatToDoWeb>
+    <WhatElseToDo/>
+</PolicyRule>

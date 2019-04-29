@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PolicyRule name="NetGovern Media Types - Disk Images" siteSpecific="false" template="cf2d9255-0030-406e-832b-7544438bd469" uuid="ee04ffc4-763b-47b0-96e7-1fc06ee04bae">
+    <WhatToFind>
+        <ScopedMediaTypes includeBody="true" onlyTopAttachments="false" selection="anyof" uuid="99116c5f-ed29-4c2a-8aa7-0d9abfd6f272">
+            <MediaType>cc102b3d-d5c9-4d83-b107-0a70374c0a02</MediaType>
+        </ScopedMediaTypes>
+        <SizeLimit enabled="false" limit="ge" threshold="0" uuid="320acced-c24c-4993-8d9f-99d8c1461541"/>
+        <Filenames exclusive="false" uuid="5be84680-46c2-4503-8074-661079a1bf83"/>
+        <Direction direction="either" uuid="b5c541c7-a62c-4484-be69-270299bc7ec8"/>
+    </WhatToFind>
+    <WhatToDo>
+        <Disposal disposal="75523b7d-30a3-43ac-b690-431fd3de9d08" primaryCrypto="UNDEFINED" secondary="95d778e0-4baa-4266-b572-db1a8bd12333" secondaryCrypto="UNDEFINED" uuid="76054ad3-66d5-4f86-85aa-5f9739b0be7a"/>
+    </WhatToDo>
+    <WhatToDoWeb>
+        <PrimaryWebAction editable="true" type="allow" uuid="a12c3c6c-9d6d-4c43-b74d-cc0e43601d38"/>
+    </WhatToDoWeb>
+    <WhatElseToDo/>
+</PolicyRule>
