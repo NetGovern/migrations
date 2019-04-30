@@ -242,5 +242,5 @@ From the Clearswift console:
 
 ```bash
 chmod +x import_rewrite_rules.sh
-./import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml alias/<cvs_filename>
+./import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml alias/<csv_filename>
 ```
