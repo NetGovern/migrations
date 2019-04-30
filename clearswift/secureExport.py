@@ -418,8 +418,6 @@ def main():
             csvFile.write("\n".join(pmmwdbsenders).replace(",@", ",*@"))
 
     # Generate system whitelists files
-    maHost = getAttributeFromBackup(
-        'security\\agents|attributes|maHost',["SERVER_NAME_NOT_FOUND"])[0].split("\\")[-1]
     if len(systemAllowedList) > 0:
         sanitizedsystemAllowedList = []
         for entry in systemAllowedList:
@@ -435,17 +433,17 @@ def main():
 
         emailAddressesAllowList = [ emailAddress for emailAddress in sortedSystemAllowedList if '@' in emailAddress ]
         if len(emailAddressesAllowList) > 0:
-            with open("{0}/addresslists/{1}_allow_list_email_addresses.txt".format(outputFolderPath,maHost), 'w') as textFile:
+            with open("{0}/addresslists/allow_list_email_addresses.txt".format(outputFolderPath), 'w') as textFile:
                 filesWritten['addressesLists'].append(
-                    "{0}/addresslists/{1}_allow_list_email_addresses.txt".format(outputFolderPath, maHost))
+                    "{0}/addresslists/allow_list_email_addresses.txt".format(outputFolderPath))
                 textFile.write("\n".join(emailAddressesAllowList))
 
         ipAddressesAllowList = [
             ipAddress for ipAddress in sortedSystemAllowedList if '@' not in ipAddress]
         if len(ipAddressesAllowList) > 0:
-            with open("{0}/addresslists/{1}_allow_list_ip_addresses.txt".format(outputFolderPath, maHost), 'w') as textFile:
+            with open("{0}/addresslists/allow_list_ip_addresses.txt".format(outputFolderPath), 'w') as textFile:
                 filesWritten['addressesLists'].append(
-                    "{0}/addresslists/{1}_allow_list_ip_addresses.txt".format(outputFolderPath, maHost))
+                    "{0}/addresslists/allow_list_ip_addresses.txt".format(outputFolderPath))
                 textFile.write("\n".join(ipAddressesAllowList))
         
     if len(systemBlockedList) > 0:
@@ -463,23 +461,23 @@ def main():
 
         emailAddressesBlockList = [ emailAddress for emailAddress in sortedSystemBlockedList if '@' in emailAddress ]
         if len(emailAddressesBlockList) > 0:
-            with open("{0}/addresslists/{1}_block_list_email_addresses.txt".format(outputFolderPath, maHost), 'w') as textFile:
+            with open("{0}/addresslists/block_list_email_addresses.txt".format(outputFolderPath), 'w') as textFile:
                 filesWritten['addressesLists'].append(
-                    "{0}/addresslists/{1}_block_list_email_addresses.txt".format(outputFolderPath, maHost))
+                    "{0}/addresslists/block_list_email_addresses.txt".format(outputFolderPath))
                 textFile.write("\n".join(emailAddressesBlockList))
         
         ipAddressesBlockList = [ emailAddress for emailAddress in sortedSystemBlockedList if '@' not in emailAddress ]
         if len(ipAddressesBlockList) > 0:
-            with open("{0}/addresslists/{1}_block_list_ip_addresses.txt".format(outputFolderPath, maHost), 'w') as textFile:
+            with open("{0}/addresslists/block_list_ip_addresses.txt".format(outputFolderPath), 'w') as textFile:
                 filesWritten['addressesLists'].append(
-                    "{0}/addresslists/{1}_block_list_ip_addresses.txt".format(outputFolderPath, maHost))
+                    "{0}/addresslists/block_list_ip_addresses.txt".format(outputFolderPath))
                 textFile.write("\n".join(ipAddressesBlockList))
     
     if len(internalMailServers) > 0:
         sortedInternalMailServers = list(set(internalMailServers)) #Unique values
         sortedInternalMailServers.sort()
-        with open("{0}/addresslists/{1}_internal_mail_servers.txt".format(outputFolderPath,maHost), 'w') as textFile:
-            filesWritten['addressesLists'].append("{0}/addresslists/{1}_internal_mail_servers.txt".format(outputFolderPath,maHost))
+        with open("{0}/addresslists/internal_mail_servers.txt".format(outputFolderPath), 'w') as textFile:
+            filesWritten['addressesLists'].append("{0}/addresslists/internal_mail_servers.txt".format(outputFolderPath))
             textFile.write("\n".join(sortedInternalMailServers))
 
     print("The following files were created:")

@@ -78,10 +78,10 @@ The following files were created:
   "addressesLists": [
     "files_20190429-103454/addresslists/pmmwdbusers.csv",
     "files_20190429-103454/addresslists/pmmwdbsenders.csv",
-    "files_20190429-103454/addresslists/sec01ca-client_allow_list_email_addresses.txt",
-    "files_20190429-103454/addresslists/sec01ca-client_allow_list_ip_addresses.txt",
-    "files_20190429-103454/addresslists/sec01ca-client_block_list_email_addresses.txt",
-    "files_20190429-103454/addresslists/sec01ca-client_internal_mail_servers.txt"
+    "files_20190429-103454/addresslists/allow_list_email_addresses.txt",
+    "files_20190429-103454/addresslists/allow_list_ip_addresses.txt",
+    "files_20190429-103454/addresslists/block_list_email_addresses.txt",
+    "files_20190429-103454/addresslists/client_internal_mail_servers.txt"
   ],
   "datcard\\iso-qt": [
     "files_20190429-103454/filenames/86e4cb1b-368b-4e81-b106-ad85f116c601.xml",
@@ -164,21 +164,13 @@ After the script runs, the new policies need to be applied/confirmed from the UI
 
 ## __Import system WL__
 
-The file name that is created by the export script is:
-
-```bash
-<secure host name>_allow_list_ip_addresses.txt
-```
+The file name that is created by the export script is: **allow_list_ip_addresses.txt**
 
 Use Clearswift UI to import it
 
 ## __Import Domain WL - email addresses only__
 
-The file name that is created by the export script is:
-
-```bash
-<secure host name>_allow_list_ip_addresses.txt
-```
+The file name that is created by the export script is: **allow_list_email_addresses.txt**
 
 Using the Clearswift UI:
 
@@ -188,11 +180,7 @@ Using the Clearswift UI:
 
 ## __Import system BL - email addreses__
 
-The file name that is created by the export script is:
-
-```bash
-<secure host name>_block_list_email_addresses.txt
-```
+The file name that is created by the export script is: **block_list_email_addresses.txt**
 
 Using the Clearswift UI:
 
@@ -202,6 +190,7 @@ Using the Clearswift UI:
 
 ## __Import system BL - IPs__
 
+Run this step only if the export script discovered blocked IP addresses.
 Using the Clearswift UI:
 
 * Go to system/smtp settings/connections
@@ -211,10 +200,8 @@ run script from command line:
 
 ```bash
 chmod +x importhosts.sh
-./importhosts.sh '<connection_name>' <file_name>
+./importhosts.sh '<connection_name>' addresslists/block_list_ip_addresses.txt
 ```
-
-where <file_name> is the previously exported: \<host name>_block_list_ip_addresses.txt
 
 restart the tomcat web server
 
@@ -233,7 +220,7 @@ Run script the script provided by Clearswift from command line:
 
 ```bash
 chmod +x importhosts.sh
-./importhosts.sh <new_connection_name> <file_name_from_export_script>
+./importhosts.sh <new_connection_name> addresslists/client_allow_list_ip_addresses.txt
 ```
 
 Restart the tomcat web server
@@ -251,9 +238,9 @@ Using the Clearswift UI, Go to system/smtp settings/email address rewriting/ and
 From the Clearswift console:
 
 * Copy the csv file previously exported
-* run the following command
+* run the following command selecting the file wanted from the unzipped csv.  This step will need to be repeated per each csv
 
 ```bash
 chmod +x import_rewrite_rules.sh
-./import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml <cvs_filename>
+./import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml alias/<cvs_filename>
 ```
