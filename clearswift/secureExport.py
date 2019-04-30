@@ -486,8 +486,8 @@ def main():
     print(json.dumps(filesWritten,indent=2))
     
     #Uncomment to debug
-    with open('{0}/myData.json'.format(outputFolderPath), 'w') as outfile:
-        json.dump(myData, outfile, indent=2)
+    #with open('./myData.json', 'w') as outfile:
+    #    json.dump(myData, outfile, indent=2)
 
     shutil.make_archive(outputFolderPath, 'zip', "./{0}/".format(outputFolderPath))
 

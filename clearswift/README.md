@@ -1,20 +1,34 @@
 # NetGovern Secure export scripts to Clearswift
 
-The following python scripts process a 6.0+ secure backup file in order to export:
+The following set of scripts process a 6.0+ secure backup file and pulls email addresses from a LDAP backend in order to export:
 
 1. System and user defined whitelisted addresses
 2. Custom Attachment blocking policies based on filenames and file extensions
+3. A list of emails with the active aliases
 
 ## Pre-requisites
 
-Python 3+ with the following modules:
+The following files need to be copied to the same location in the netgovern secure server:
 
-* argparse
-* lxml
-* uuid
+
+Run the following script to prepare the environment:  [export_prep.sh](./export_prep.sh)
 
 ```bash
-python3 -m pip install argparse lxml uuid
+chmod +x export_prep.sh
+./export_prep.sh
+
+....
+....
+....
+
+  Downloading https://files.pythonhosted.org/packages/35/8a/5e066949f2b40caac32c7b2a77da63ad304b5fbe869036cc3fe4a198f724/lxml-4.3.3-cp36-cp36m-manylinux1_x86_64.whl (5.7MB)
+     |################################| 5.7MB 2.1MB/s 
+Collecting uuid
+  Downloading https://files.pythonhosted.org/packages/ce/63/f42f5aa951ebf2c8dac81f77a8edcc1c218640a2a35a03b9ff2d4aa64c3d/uuid-1.30.tar.gz
+Installing collected packages: argparse, lxml, uuid
+  Running setup.py install for uuid ... done
+Successfully installed argparse-1.4.0 lxml-4.3.3 uuid-1.30
+
 ```
 
 ---
@@ -31,25 +45,32 @@ optional arguments:
   -h, --help            show this help message and exit
   -f BACKUPFILEPATH, --backup-file BACKUPFILEPATH
                         Path to the NetGovern Secure backup file (v6+ format)
+  -l, --export-ldap
+                        enable Ldap export
   -t, --export-templates
                         enable Templates export
 
 ```
 
+A full system backup needs to be taken before running the script!
+
 It exports custom Attachment Blocking policies or policies that were modified from the default ones provided by the NetGovern.  
 Using the option --export-templates will output all of the policies (Default templates and custom/modified)
 The output is 2 XML files per policy, ready to be used by Clearswift.
 
+If the -l option is used, it exports the aliases to map the primary SMTP address into a csv file calling the script ldap-pull.sh with credentials parsed from the backup file.  
+The csv structure is: rcpt-email, primary-smtp.
+
 It also exports system whitelists, internal mail servers and user whitelists.
 In the case of user whitelists, it will produce output for each alias of the domain.
-The output is a set of csv and txt files ready to be used by Clearswift.
+The output is a zip file containing a set of csv and txt files ready to be used by Clearswift.
 
 ---
 
 ## Example
 
 ```bash
-python3 .\secureExport.py -f .\netmail.wbackup
+python3 .\secureExport.py -f .\netmail.wbackup -l
 Exporting policy: datcard\iso-qt
 Exporting policy: Policy Templates\Executables and Scripts\Deliver to Mailbox
 The following files were created:
@@ -107,7 +128,16 @@ cat 95bc36c7-e024-401a-bb1a-e239c99b93aa.xml
 
 ## @ Clearswift
 
-The set of files from the output should be copied to the clearswift gateway server.  SSH is locked down, but once logged in to the console, it will allow to pull files from another location.
+The zip file created byt the export script needs to be copied to the clearswift gateway server.  
+In addition, the following files and scripts need to be copied as well:
+
+* [import_pmm.sh](./import_pmm.sh)
+* [import_att.sh](./import_att.sh)
+* [templates.zip](./templates.zip)
+* [importhosts.sh](./importhosts.sh)
+* [import_rewrite_rules.sh](./import_rewrite_rules.sh)
+
+Note: SSH is locked down, but once logged in to the console, it will allow to pull files from another location.
 
 Note: You must enable SSH and whitelist your source IP (or range) in System > SSH Access.
 Note: All Tests were run on 4.10.0.20.
@@ -126,37 +156,11 @@ psql -d pmi_operations -U postgres -c "select * from pmmw_users;"
 psql -d pmi_operations -U postgres -c "select * from pmmw_whitelist;"
 ```
 
-## __Import Attachment Blocking policy__
+## __Import Attachment Blocking policies and MediaType Templates rules__
 
-Copy the exported XML files to eacf of their respective folders:
-
-```bash
-/var/cs-gateway/uicfg/policy/filenames/<file_containing_list_of_filenames>
-```
-
-And
-
-```bash
-/var/cs-gateway/uicfg/policy/rules/<file_containing_policy>
-```
-
-Restart the tomcat server:
-
-```bash
-cs-servicecontrol restart tomcat
-```
-
-## __Import of MediaType Templates Rules__
-
-There's a predefined set of templates from NetGovern.  copy the xml files to: /var/cs-gateway/uicfg/policy/rules
-
-Restart the tomcat server:
-
-```bash
-cs-servicecontrol restart tomcat
-```
-
-Go back to the UI and configure the disposition action for the imported rules
+Run the script [import_att.sh](./import_att.sh)
+It will copy the policy files and restart tomcat.
+After the script runs, the new policies need to be applied/confirmed from the UI.  Disposition actions need to be configured from the UI as well.
 
 ## __Import system WL__
 
@@ -206,8 +210,8 @@ Using the Clearswift UI:
 run script from command line:
 
 ```bash
-cd /var/cs-gateway/uicfg/tls/endpoints
-run importhosts.sh '<connection_name>' <file_name>
+chmod +x importhosts.sh
+./importhosts.sh '<connection_name>' <file_name>
 ```
 
 where <file_name> is the previously exported: \<host name>_block_list_ip_addresses.txt
@@ -228,8 +232,8 @@ Using the Clearswift UI:
 Run script the script provided by Clearswift from command line:
 
 ```bash
-cd /var/cs-gateway/uicfg/tls/endpoints
-run importhosts.sh <new_connection_name> <file_name_from_export_script>
+chmod +x importhosts.sh
+./importhosts.sh <new_connection_name> <file_name_from_export_script>
 ```
 
 Restart the tomcat web server
@@ -242,9 +246,6 @@ cs-servicecontrol restart tomcat
 
 Aliasing is supported using the PostFix config (if there's no need to retain the original rcpt address):
 
-From the secure server:
-Export the aliases to map the primary SMTP address into a csv file using the script ldap-pull.sh.  The csv structure is: rcpt-email, primary-smtp.
-
 Using the Clearswift UI, Go to system/smtp settings/email address rewriting/ and configure the type of aliasing wanted.
 
 From the Clearswift console:
@@ -253,5 +254,6 @@ From the Clearswift console:
 * run the following command
 
 ```bash
-import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml <cvs_filename>
+chmod +x import_rewrite_rules.sh
+./import_rewrite_rules.sh /var/cs-gateway/uicfg/policy/alias.xml <cvs_filename>
 ```
