@@ -81,7 +81,7 @@ The following files were created:
     "files_20190429-103454/addresslists/allow_list_email_addresses.txt",
     "files_20190429-103454/addresslists/allow_list_ip_addresses.txt",
     "files_20190429-103454/addresslists/block_list_email_addresses.txt",
-    "files_20190429-103454/addresslists/client_internal_mail_servers.txt"
+    "files_20190429-103454/addresslists/internal_mail_servers.txt"
   ],
   "datcard\\iso-qt": [
     "files_20190429-103454/filenames/86e4cb1b-368b-4e81-b106-ad85f116c601.xml",
