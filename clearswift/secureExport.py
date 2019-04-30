@@ -14,7 +14,7 @@ from lxml import etree
 
 def parseMe():
     parser = argparse.ArgumentParser(
-        description="Export NetGovern Allow/Block lists and Attachment Blocking exportfor ClearSwift")
+        description="Export NetGovern Allow/Block lists and Attachment Blocking export for ClearSwift")
     parser.add_argument("-f", "--backup-file",
                         dest="backupFile",
                         required=True,
