@@ -53,6 +53,8 @@ optional arguments:
 ```
 
 A full system backup needs to be taken before running the script!
+After taking a full backup from the UI, the new file is written at: /opt/ma/netmail/var/dbf/mplus.directory.backup/
+Look at the latest *.backup
 
 It exports custom Attachment Blocking policies or policies that were modified from the default ones provided by the NetGovern.  
 Using the option --export-templates will output all of the policies (Default templates and custom/modified)
