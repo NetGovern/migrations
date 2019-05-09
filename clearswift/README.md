@@ -11,7 +11,7 @@ The following set of scripts process a 6.0+ secure backup file and pulls email a
 The following files need to be copied to the same location in the netgovern secure server:
 
 
-Run the following script to prepare the environment:  [export_prep.sh](./export_prep.sh)
+Run the following script to prepare the environment:  [export_prep.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/export_prep.sh)
 
 ```bash
 chmod +x export_prep.sh
@@ -51,6 +51,8 @@ optional arguments:
                         enable Templates export
 
 ```
+
+*NOTE: Locales have to be UTF-8.  DO NOT RUN THE SCRIPT AS root, IT WILL BREAK THE JSON PARSER.*
 
 A full system backup needs to be taken before running the script!
 After taking a full backup from the UI, the new file is written at: /opt/ma/netmail/var/dbf/mplus.directory.backup/
@@ -133,11 +135,11 @@ cat 95bc36c7-e024-401a-bb1a-e239c99b93aa.xml
 The zip file created byt the export script needs to be copied to the clearswift gateway server.  
 In addition, the following files and scripts need to be copied as well:
 
-* [import_pmm.sh](./import_pmm.sh)
-* [import_att.sh](./import_att.sh)
-* [templates.zip](./templates.zip)
-* [importhosts.sh](./importhosts.sh)
-* [import_rewrite_rules.sh](./import_rewrite_rules.sh)
+* [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
+* [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
+* [templates.zip](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/templates.zip)
+* [importhosts.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/importhosts.sh)
+* [import_rewrite_rules.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_rewrite_rules.sh)
 
 Note: SSH is locked down, but once logged in to the console, it will allow to pull files from another location.
 
@@ -150,7 +152,7 @@ THIS HAS TO BE DONE BEFORE ANY USER LOGS IN.
 
 NEEDS TO BE DONE AGAINST AN EMPTY PMM DATABASE.
 
-With the zip file from the export process, run the script [import_pmm.sh](./import_pmm.sh)
+With the zip file from the export process, run the script [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
 After the script runs, the internal import process should kick in and your dropped files will disappear.  You can query the tables with the following commands to verify that it has finished:
 
 ```bash
@@ -160,7 +162,7 @@ psql -d pmi_operations -U postgres -c "select * from pmmw_whitelist;"
 
 ## __Import Attachment Blocking policies and MediaType Templates rules__
 
-Run the script [import_att.sh](./import_att.sh)
+Run the script [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
 It will copy the policy files and restart tomcat.
 After the script runs, the new policies need to be applied/confirmed from the UI.  Disposition actions need to be configured from the UI as well.
 
