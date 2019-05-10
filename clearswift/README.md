@@ -74,7 +74,7 @@ The output is a zip file containing a set of csv and txt files ready to be used 
 ## Example
 
 ```bash
-python3 .\secureExport.py -f .\netmail.wbackup -l
+python3 ./secureExport.py -f ./netmail.wbackup -l
 Exporting policy: datcard\iso-qt
 Exporting policy: Policy Templates\Executables and Scripts\Deliver to Mailbox
 The following files were created:
