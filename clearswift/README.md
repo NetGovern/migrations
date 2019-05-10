@@ -8,8 +8,12 @@ The following set of scripts process a 6.0+ secure backup file and pulls email a
 
 ## Pre-requisites
 
-The following files need to be copied to the same location in the netgovern secure server:
+You can run the following oneliner in your netgovern secure to clone this repository:
+```bash
+sudo yum install git -y && git clone https://bitbucket.netmail.com/scm/pub/migrations.git
+```
 
+The following files need to be copied to the same location in the netgovern secure server:
 
 Run the following script to prepare the environment:  [export_prep.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/export_prep.sh)
 
