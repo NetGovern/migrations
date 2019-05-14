@@ -10,6 +10,7 @@ USERFILE="/tmp/userfile"
 OUTFILE="$6"
 
 #rm $USERFILE $OUTFILE
+touch $OUTFILE
 
 #Get users
 $LDAPCMD "(&(!(objectClass=contact))(|(objectClass=Person)(objectClass=group)(objectClass=msExchDynamicDistributionList))(proxyaddresses=*smtp*))" cn | awk -F : '/cn/ {print $2}' | \
