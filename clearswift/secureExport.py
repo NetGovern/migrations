@@ -178,7 +178,7 @@ def main():
                 externalCmdLog.append("HOST: {0}".format(ldapHost))
                 externalCmdLog.append("PORT: {0}".format(ldapPort))
                 externalCmdLog.append("Base DN: {0}".format(baseDn))
-                externalCmd = ["./ldap-pull.sh",ldapPort,adminDn,adminPassword,baseDn,"{0}/alias/{1}.txt".format(outputFolderPath,domainName)]
+                externalCmd = ["./ldap-pull.sh",ldapHost,ldapPort,adminDn,adminPassword,baseDn,"{0}/alias/{1}.txt".format(outputFolderPath,domainName)]
                 subprocess.call(externalCmd)
                 #print(externalCmd)
         # Dumping log to file
