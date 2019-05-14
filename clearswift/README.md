@@ -140,7 +140,7 @@ Login to the Gateway Linux console using the cs-admin credentials.
 Select Open Terminal Session and login using the cs-admin credentials.
 Assume root.
 
-The zip file created byt the export script needs to be copied to the clearswift gateway server.  
+The zip file created by the export script needs to be copied to the clearswift Gateway server.  
 In addition, the following files and scripts need to be copied as well:
 
 * [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
@@ -161,10 +161,11 @@ The Gateway initial policy wizard asks you to supply an internal email server. I
 
 ## __Adding Customer Email Domains__
 
-The Gateway initial policy wizard asks you to supply up to 6 hosted email domains. If the customer has additional email domains that they wish to protect, they can be manually added to System > SMTP Settings > Mail Domains and Routing
-•	Use the Hosted Domains tab to add those email domains that the customer wishes to protect
-•	Use the Email Routing tab to configure any custom routing for the customer’s email domains that you have just added
-•	Use the MTA Groups tab to configure any required failover/load-balancing between the servers in the group, to ensure that mail traffic continues to be routed without interruption
+The Gateway initial policy wizard asks you to supply up to 6 hosted email domains. If the customer has additional email domains that they wish to protect, they can be manually added to System > SMTP Settings > Mail Domains and Routing.
+
+* Use the Hosted Domains tab to add those email domains that the customer wishes to protect
+* Use the Email Routing tab to configure any custom routing for the customer’s email domains that you have just added
+* Use the MTA Groups tab to configure any required failover/load-balancing between the servers in the group, to ensure that mail traffic continues to be routed without interruption
 
 ### __User Allow lists__
 
@@ -185,7 +186,7 @@ You can verify the successful import in the Gateway UI under System > PMM Settin
 
 Run the script [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
 It will copy the policy files and restart tomcat.
-After the script runs, the new policies need to be applied/confirmed from the UI. Disposal actions need to be configured from the UI as the ones set in the templates may not be existing in the SEG you are importing these rules.
+After the script runs, the new policies need to be applied/confirmed from the UI. Disposal actions need to be configured from the UI as the ones set in the templates may not exist in the SEG you are importing these rules to.
 
 ## __Import system WL__
 
