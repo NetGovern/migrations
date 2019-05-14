@@ -196,7 +196,7 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
-	a.	Click on Choose File and select the allow_list_ip_addresses.txt file
+    a.	Click on Choose File and select the allow_list_ip_addresses.txt file
 	b.	Ensure that the Replace existing matching entries? check box is not ticked
 	c.	Select the Mail Server radio button
 	d.	Tick the appropriate check boxes for the spam checks that you wish to bypass
