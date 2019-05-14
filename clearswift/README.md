@@ -196,11 +196,11 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
-	•	Click on Choose File and select the allow_list_ip_addresses.txt file
-	•	Ensure that the Replace existing matching entries? check box is not ticked
-	•	Select the Mail Server radio button
-	•	Tick the appropriate check boxes for the spam checks that you wish to bypass
-	•	Click on Import
+	* Click on Choose File and select the allow_list_ip_addresses.txt file
+	* Ensure that the Replace existing matching entries? check box is not ticked
+	* Select the Mail Server radio button
+	* Tick the appropriate check boxes for the spam checks that you wish to bypass
+	* Click on Import
 4.	If there are any errors in the file to be imported, a warning dialog box will be displayed. You will need to correct the errors in the source file before you can proceed with the import
 5.	Click on the White List tab to verify that the appropriate entries have been imported
 
@@ -215,11 +215,11 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
-	•	Click on Choose File and select the allow_list_email_addresses.txt file
-	•	Ensure that the Replace existing matching entries? check box is not ticked
-	•	Select the Email radio button
-	•	Tick the appropriate check boxes for the spam checks that you wish to bypass
-	•	Click on Import
+	* Click on Choose File and select the allow_list_email_addresses.txt file
+	* Ensure that the Replace existing matching entries? check box is not ticked
+	* Select the Email radio button
+	* Tick the appropriate check boxes for the spam checks that you wish to bypass
+	* Click on Import
 4.	If there are any errors in the file to be imported (e.g. wildcards are not supported in the following format: example@*.salesforce.com), a warning dialog box will be displayed. You will need to correct the errors in the source file before you can proceed with the import
 5.	Click on the White List tab to verify that the appropriate entries have been imported
 
@@ -238,14 +238,14 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > Email Addresses
 2.	Click on New
 3.	In the Choose Address List Type? dialog
-	•	Select the Static Address List radio button
-	•	Click on Create
+	* Select the Static Address List radio button
+	* Click on Create
 4.	Use the Overview section to rename the address list to: Blacklisted Email Addresses
 5.	Click on Import address list on the left of the UI
 6.	In the Import Addresses to “Blacklisted Email Addresses” dialog
-	•	Click on Choose File and select the block_list_email_addresses.txt file
-	•	Ensure that the Delete and replace the current addresses in the address list? check box is not ticked
-	•	Click on Import
+	* Click on Choose File and select the block_list_email_addresses.txt file
+	* Ensure that the Delete and replace the current addresses in the address list? check box is not ticked
+	* Click on Import
 7.	Navigate to Policy > SpamLogic Settings
 8.	In the Reject messages from the following pane, click on Click here to change these settings
 9.	Tick the Blacklisted Email Addresses check box
@@ -320,8 +320,8 @@ Using the Clearswift UI,
 2.	Click on New
 3.	In the Options pane, click on Click here to change these settings
 4.	Select the type of rewriting required:
-	•	Rewrite addresses of the sender and recipients in the message envelope and content
-	•	Rewrite addresses of recipients within the message envelope only
+	* Rewrite addresses of the sender and recipients in the message envelope and content
+	* Rewrite addresses of recipients within the message envelope only
 5.	Click on Save
 
 Now access the Clearswift command line to run the import script:
