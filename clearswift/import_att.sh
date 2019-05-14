@@ -34,6 +34,5 @@ fi
 if [ $UI_RESTART -eq 1]; then
 	echo "Changes made. Restart tomcat"
 	cs-servicecontrol restart tomcat
+    echo "Please login to Clearswift UI to apply the configuration"
 fi
-    
-echo "Please login to Clearswift UI to apply the configuration"
