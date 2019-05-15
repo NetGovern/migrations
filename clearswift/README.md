@@ -307,7 +307,7 @@ Now access the Clearswift command line to run the import script:
 
 ```bash
 chmod +x importhosts.sh
-./importhosts.sh <new_connection_name> addresslists/client_allow_list_ip_addresses.txt
+./importhosts.sh '<connection_name>' addresslists/client_allow_list_ip_addresses.txt
 ```
 
 Restart the tomcat web server
