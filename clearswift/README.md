@@ -216,8 +216,8 @@ Use Clearswift UI to import it
 
 The file name that is created by the export script is: **allow_list_email_addresses.txt**
 
-If the requirements is to bypass Spam policy only:
-To import this file into the Clearswift UI:
+If the requirements is to bypass Spam policy only, use the Clearswift UI to:
+
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
@@ -229,8 +229,7 @@ To import this file into the Clearswift UI:
 4.	If there are any errors in the file to be imported (e.g. wildcards are not supported in the following format: example@*.salesforce.com), a warning dialog box will be displayed. You will need to correct the errors in the source file before you can proceed with the import
 5.	Click on the White List tab to verify that the appropriate entries have been imported
 
-If other elements of the policy need bypassed (i.e. block attachments)
-Using the Clearswift UI:
+If other elements of the policy need bypassed (i.e. block attachments), use the Clearswift UI to:
 
 * Create a new email address list
 * Import the text file
