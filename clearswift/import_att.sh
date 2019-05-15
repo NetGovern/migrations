@@ -31,7 +31,7 @@ if [[ -d filenames && -d rules ]]; then
     else echo "No filenames or rules directory. Ignoring"
 fi
 
-if [ $UI_RESTART -eq 1]; then
+if [ $UI_RESTART -eq 1 ]; then
 	echo "Changes made. Restart tomcat"
 	cs-servicecontrol restart tomcat
     echo "Please login to Clearswift UI to apply the configuration"
