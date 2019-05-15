@@ -140,7 +140,7 @@ Login to the Gateway Linux console using the cs-admin credentials.
 Select Open Terminal Session and login using the cs-admin credentials.
 Assume root.
 
-The zip file created byt the export script needs to be copied to the clearswift gateway server.  
+The zip file created by the export script needs to be copied to the clearswift Gateway server.  
 In addition, the following files and scripts need to be copied as well:
 
 * [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
@@ -161,10 +161,11 @@ The Gateway initial policy wizard asks you to supply an internal email server. I
 
 ## __Adding Customer Email Domains__
 
-The Gateway initial policy wizard asks you to supply up to 6 hosted email domains. If the customer has additional email domains that they wish to protect, they can be manually added to System > SMTP Settings > Mail Domains and Routing
-•	Use the Hosted Domains tab to add those email domains that the customer wishes to protect
-•	Use the Email Routing tab to configure any custom routing for the customer’s email domains that you have just added
-•	Use the MTA Groups tab to configure any required failover/load-balancing between the servers in the group, to ensure that mail traffic continues to be routed without interruption
+The Gateway initial policy wizard asks you to supply up to 6 hosted email domains. If the customer has additional email domains that they wish to protect, they can be manually added to System > SMTP Settings > Mail Domains and Routing.
+
+* Use the Hosted Domains tab to add those email domains that the customer wishes to protect
+* Use the Email Routing tab to configure any custom routing for the customer’s email domains that you have just added
+* Use the MTA Groups tab to configure any required failover/load-balancing between the servers in the group, to ensure that mail traffic continues to be routed without interruption
 
 ### __User Allow lists__
 
@@ -183,9 +184,16 @@ You can verify the successful import in the Gateway UI under System > PMM Settin
 
 ## __Import Attachment Blocking policies and MediaType Templates rules__
 
-Run the script [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
-It will copy the policy files and restart tomcat.
-After the script runs, the new policies need to be applied/confirmed from the UI. Disposal actions need to be configured from the UI as the ones set in the templates may not be existing in the SEG you are importing these rules.
+Run the script: [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
+
+It will copy the policy files and restart tomcat. After the script runs, the new policies need to be applied/confirmed from the UI. 
+
+Disposal actions need to be configured from the UI as the ones set in the templates may not exist in the SEG you are importing these rules to. To do this:
+
+1.	Navigate to Policy > Disposal Actions
+2.	Create the appropriate Message Area(s)
+3.	Navigate to Policy > Content Rules
+4.	Open the appropriate Content Rule and select the correct "Hold in {Message Area Name}" option from the primary disposal action drop down
 
 ## __Import system WL__
 
@@ -194,11 +202,11 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
-	a.	Click on Choose File and select the allow_list_ip_addresses.txt file
-	b.	Ensure that the Replace existing matching entries? check box is not ticked
-	c.	Select the Mail Server radio button
-	d.	Tick the appropriate check boxes for the spam checks that you wish to bypass
-	e.	Click on Import
+	* Click on Choose File and select the allow_list_ip_addresses.txt file
+	* Ensure that the Replace existing matching entries? check box is not ticked
+	* Select the Mail Server radio button
+	* Tick the appropriate check boxes for the spam checks that you wish to bypass
+	* Click on Import
 4.	If there are any errors in the file to be imported, a warning dialog box will be displayed. You will need to correct the errors in the source file before you can proceed with the import
 5.	Click on the White List tab to verify that the appropriate entries have been imported
 
@@ -208,21 +216,20 @@ Use Clearswift UI to import it
 
 The file name that is created by the export script is: **allow_list_email_addresses.txt**
 
-If the requirements is to bypass Spam policy only:
-To import this file into the Clearswift UI:
+If the requirements is to bypass Spam policy only, use the Clearswift UI to:
+
 1.	Navigate to Policy > SpamLogic Settings
 2.	Click on Import white list on the left of the UI
 3.	In the Import SpamLogic White List dialog
-	a.	Click on Choose File and select the allow_list_email_addresses.txt file
-	b.	Ensure that the Replace existing matching entries? check box is not ticked
-	c.	Select the Email radio button
-	d.	Tick the appropriate check boxes for the spam checks that you wish to bypass
-	e.	Click on Import
+	* Click on Choose File and select the allow_list_email_addresses.txt file
+	* Ensure that the Replace existing matching entries? check box is not ticked
+	* Select the Email radio button
+	* Tick the appropriate check boxes for the spam checks that you wish to bypass
+	* Click on Import
 4.	If there are any errors in the file to be imported (e.g. wildcards are not supported in the following format: example@*.salesforce.com), a warning dialog box will be displayed. You will need to correct the errors in the source file before you can proceed with the import
 5.	Click on the White List tab to verify that the appropriate entries have been imported
 
-If other elements of the policy need bypassed (i.e. block attachments)
-Using the Clearswift UI:
+If other elements of the policy need bypassed (i.e. block attachments), use the Clearswift UI to:
 
 * Create a new email address list
 * Import the text file
@@ -236,14 +243,14 @@ To import this file into the Clearswift UI:
 1.	Navigate to Policy > Email Addresses
 2.	Click on New
 3.	In the Choose Address List Type? dialog
-	a.	Select the Static Address List radio button
-	b.	Click on Create
+	* Select the Static Address List radio button
+	* Click on Create
 4.	Use the Overview section to rename the address list to: Blacklisted Email Addresses
 5.	Click on Import address list on the left of the UI
 6.	In the Import Addresses to “Blacklisted Email Addresses” dialog
-	a.	Click on Choose File and select the block_list_email_addresses.txt file
-	b.	Ensure that the Delete and replace the current addresses in the address list? check box is not ticked
-	c.	Click on Import
+	* Click on Choose File and select the block_list_email_addresses.txt file
+	* Ensure that the Delete and replace the current addresses in the address list? check box is not ticked
+	* Click on Import
 7.	Navigate to Policy > SpamLogic Settings
 8.	In the Reject messages from the following pane, click on Click here to change these settings
 9.	Tick the Blacklisted Email Addresses check box
@@ -300,7 +307,7 @@ Now access the Clearswift command line to run the import script:
 
 ```bash
 chmod +x importhosts.sh
-./importhosts.sh <new_connection_name> addresslists/client_allow_list_ip_addresses.txt
+./importhosts.sh '<connection_name>' addresslists/client_allow_list_ip_addresses.txt
 ```
 
 Restart the tomcat web server
@@ -318,8 +325,8 @@ Using the Clearswift UI,
 2.	Click on New
 3.	In the Options pane, click on Click here to change these settings
 4.	Select the type of rewriting required:
-	•	Rewrite addresses of the sender and recipients in the message envelope and content
-	•	Rewrite addresses of recipients within the message envelope only
+	* Rewrite addresses of the sender and recipients in the message envelope and content
+	* Rewrite addresses of recipients within the message envelope only
 5.	Click on Save
 
 Now access the Clearswift command line to run the import script:
