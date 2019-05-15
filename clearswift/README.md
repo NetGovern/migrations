@@ -187,7 +187,13 @@ You can verify the successful import in the Gateway UI under System > PMM Settin
 Run the script [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
 It will copy the policy files and restart tomcat.
 After the script runs, the new policies need to be applied/confirmed from the UI. 
-Disposal actions need to be configured from the UI as the ones set in the templates may not exist in the SEG you are importing these rules to.
+
+Disposal actions need to be configured from the UI as the ones set in the templates may not exist in the SEG you are importing these rules to. To do this:
+
+1.	Navigate to Policy > Disposal Actions
+2.	Create the appropriate Message Area(s)
+3.	Navigate to Policy > Content Rules
+4.	Open the appropriate Content Rule and select the correct "Hold in {Message Area Name}" option from the primary disposal action drop down
 
 ## __Import system WL__
 
