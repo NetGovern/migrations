@@ -149,7 +149,7 @@ In addition, the following files and scripts need to be copied as well:
 * [importhosts.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/importhosts.sh)
 * [import_rewrite_rules.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_rewrite_rules.sh)
 
-Note: SSH is locked down, but once logged in to the console, it will allow to pull files from another location.
+Note: SSH is locked down, but once logged in to the console, it will allow to pull files from another server.
 
 Note: You must enable SSH and whitelist your source IP (or range) in System > System Settings > SSH Access.
 Note: All Tests were run on 4.10.0.20.

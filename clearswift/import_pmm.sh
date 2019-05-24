@@ -14,7 +14,7 @@ fi
 EXPORTED_ZIP_FILE="$1"
 
 # Import PMM
-unzip $EXPORTED_ZIP_FILE
+unzip -o $EXPORTED_ZIP_FILE
 
 # Test if the addresslists directory is present in the current directory
 if [ ! -d addresslists ]; then

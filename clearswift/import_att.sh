@@ -15,7 +15,7 @@ echo "Processing Media type templates"
 EXPORTED_ZIP_FILE="$1"
 UI_RESTART=0
 
-unzip $EXPORTED_ZIP_FILE
+unzip -o $EXPORTED_ZIP_FILE
 # Test if the templates directory is present in the current directory. Otherwise ignore and move on.
 if [ -d templates ]; then
 	cp templates/*.xml /var/cs-gateway/uicfg/policy/rules/
