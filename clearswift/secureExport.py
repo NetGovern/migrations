@@ -35,9 +35,11 @@ def parseMe():
 
 def loadBackup(backupFilePath):
     if os.path.isfile(backupFilePath):
-        with open(backupFilePath, 'r') as jsonFile:
+        with open(backupFilePath, 'r', encoding='utf-8') as jsonFile:
             try:
                 backupData = json.load(jsonFile)
+            except json.decoder.JSONDecodeError as e:
+                sys.exit("Exception found while processing the backup file: {0} line {1} column {2} (char {3})".format(e.msg, e.lineno, e.colno, e.pos))
             except:
                 sys.exit("The backup file has a problem in its JSON structure")
     else:
@@ -305,13 +307,23 @@ def main():
     for domain in domainsList:
         myData[domain] = {}
         # Whitelist servers present in the delivery routes
-        deliveryPolicyList = getAttributeFromBackup(
-            'security\\domains\\{0}|attributes|maRoutePolicy'.format(domain), [])
+        deliveryPolicyList = [
+            maObject for maObject in backupData.keys()
+            if 'security\\policies\\Delivery' in maObject and
+                backupData.get(maObject, {}).get('class') == 'maDeliveryPolicy' ]
+        #deliveryPolicyList = getAttributeFromBackup(
+        #    'security\\domains\\{0}|attributes|maRoutePolicy'.format(domain), [])
         for policy in deliveryPolicyList:
             deliveryRoutesList = getAttributeFromBackup(
                 '{0}|attributes|maRouteURI'.format(policy), [])
             for route in deliveryRoutesList:
-                internalMailServers.append(re.search(r'//(.*):',route).group(1))
+                matchWithPort = re.search(r'//(.*):',route)
+                matchWithoutPort = re.search(r'//(.*)\?',route)
+                if matchWithPort:
+                    internalMailServers.append(matchWithPort.group(1))
+                elif matchWithoutPort:
+                    internalMailServers.append(matchWithoutPort.group(1))
+
 
         # Get Allowed/Blocked by domain
         myData[domain]['Allowed'] = list(set(getAttributeFromBackup(
