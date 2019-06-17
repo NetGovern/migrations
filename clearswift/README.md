@@ -50,7 +50,7 @@ optional arguments:
   -f BACKUPFILEPATH, --backup-file BACKUPFILEPATH
                         Path to the NetGovern Secure backup file (v6+ format)
   -l, --export-ldap
-                        enable Ldap export
+                        enable aliases Ldap export.  If this is not selected, the aliases are exported from the backup file
   -t, --export-templates
                         enable Templates export
 
@@ -68,6 +68,7 @@ The output is 2 XML files per policy, ready to be used by Clearswift.
 
 If the -l option is used, it exports the aliases to map the primary SMTP address into a csv file calling the script ldap-pull.sh with credentials parsed from the backup file.  
 The csv structure is: rcpt-email, primary-smtp.
+If the -l option is not used, then the aliases are exported from the backup file.
 
 It also exports system whitelists, internal mail servers and user whitelists.
 In the case of user whitelists, it will produce output for each alias of the domain.

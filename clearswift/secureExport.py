@@ -9,6 +9,7 @@ import subprocess
 import urllib.parse
 import zipfile
 import shutil
+import pprint
 from datetime import datetime
 from lxml import etree
 
@@ -137,6 +138,7 @@ def main():
         sys.exit("Cannot create {0}/alias".format(outputFolderPath))
 
     # ldap-pull
+    filesWritten['aliasList'] = []
     if exportLdap:
         externalCmdLog = []
         authPolicies = [
@@ -182,11 +184,57 @@ def main():
                 externalCmdLog.append("Base DN: {0}".format(baseDn))
                 externalCmd = ["./ldap-pull.sh",ldapHost,ldapPort,adminDn,adminPassword,baseDn,"{0}/alias/{1}.txt".format(outputFolderPath,domainName)]
                 subprocess.call(externalCmd)
+                filesWritten['aliasList'].append("{0}/alias/{1}.txt".format(outputFolderPath,domainName))
                 #print(externalCmd)
         # Dumping log to file
         if len(externalCmdLog) > 0:
             with open("ldap-pull-log.txt", 'w') as externalCmdLogFile:
                 externalCmdLogFile.write("\n".join(externalCmdLog))
+    else:
+        # Get aliases from NetGovern Secure Backup
+        # Process domains
+        aliasData = {}
+        domainsList = getAttributeFromBackup(
+            'security\\agents\\SMTP|attributes|maUserDomain', [])
+        #print(domainsList)
+        aliasData['PfAliases'] = {}
+        # Get domain aliases
+        for domain in domainsList:
+            aliasData['PfAliases'][domain] = {}
+            aliasData['PfAliases'][domain]['userEmailAddresses'] = []
+            domainAliasesList = getAttributeFromBackup(
+                'security\\domains\\{0}|attributes|maAliases'.format(domain), [], True)
+            aliasData['PfAliases'][domain]['domainAliases'] = [
+                alias for alias in domainAliasesList if alias != domain ]
+            userObjectsList = [
+                user for user in backupData.keys()
+                if 'security\\domains\\{0}'.format(domain) in user and '@' in user ]
+            userAliases = {}
+            for user in userObjectsList:
+                userPrimaryEmailAddress = user.rsplit('\\', 1)[1].lower()
+                userAliases[userPrimaryEmailAddress] = []
+                userAliasesList = getAttributeFromBackup(
+                    '{0}|attributes|maAliases'.format(user), [], True)
+                for userAlias in [userAlias for userAlias in userAliasesList if isValid(userAlias)]:
+                    userAliases[userPrimaryEmailAddress].append(userAlias)
+                userAliases[userPrimaryEmailAddress] = list(set(userAliases[userPrimaryEmailAddress]))
+                aliasData['PfAliases'][domain]['userEmailAddresses'] = userAliases
+        pprint.pprint(aliasData)
+        for domain in aliasData['PfAliases']:
+            print("domain: {0}".format(domain))
+            aliasesCsv = []
+            for userEmailAddress in aliasData['PfAliases'][domain]['userEmailAddresses']:
+                for userAlias in aliasData['PfAliases'][domain]['userEmailAddresses'][userEmailAddress]:
+                    aliasesCsv.append("{0},{1}".format(userAlias,userEmailAddress))
+                    for domainAlias in aliasData['PfAliases'][domain]['domainAliases']:
+                        aliasesCsv.append("{0},{1}".format(userAlias.replace(domain,domainAlias),userEmailAddress))
+                for domainAlias in aliasData['PfAliases'][domain]['domainAliases']:
+                        aliasesCsv.append("{0},{1}".format(userEmailAddress.replace(domain,domainAlias),userEmailAddress))
+
+            with open("{0}/alias/{1}.txt".format(outputFolderPath,domain)
+                , 'w') as userAliasCsvFile:
+                userAliasCsvFile.write("\n".join(aliasesCsv))
+            filesWritten['aliasList'].append("{0}/alias/{1}.txt".format(outputFolderPath,domain))
 
     # Filtering Attachment Blocking policies
     if exportTemplates:
