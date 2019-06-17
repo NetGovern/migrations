@@ -219,7 +219,6 @@ def main():
                     userAliases[userPrimaryEmailAddress].append(userAlias)
                 userAliases[userPrimaryEmailAddress] = list(set(userAliases[userPrimaryEmailAddress]))
                 aliasData['PfAliases'][domain]['userEmailAddresses'] = userAliases
-        pprint.pprint(aliasData)
         for domain in aliasData['PfAliases']:
             print("domain: {0}".format(domain))
             aliasesCsv = []
