@@ -9,7 +9,6 @@ import subprocess
 import urllib.parse
 import zipfile
 import shutil
-import pprint
 from datetime import datetime
 from lxml import etree
 
