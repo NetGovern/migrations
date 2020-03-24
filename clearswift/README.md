@@ -10,12 +10,12 @@ The following set of scripts process a 6.0+ secure backup file and pulls email a
 
 You can run the following oneliner in your netgovern secure to clone this repository:
 ```bash
-sudo yum install git -y && git clone https://bitbucket.netmail.com/scm/pub/migrations.git
+sudo yum install git -y && git clone https://github.com/NetGovern/migrations.git
 ```
 
 The following files need to be copied to the same location in the netgovern secure server:
 
-Run the following script to prepare the environment:  [export_prep.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/export_prep.sh)
+Run the following script to prepare the environment:  [export_prep.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/export_prep.sh)
 
 ```bash
 chmod +x export_prep.sh
@@ -144,11 +144,11 @@ Assume root.
 The zip file created by the export script needs to be copied to the clearswift Gateway server.  
 In addition, the following files and scripts need to be copied as well:
 
-* [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
-* [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
-* [templates.zip](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/templates.zip)
-* [importhosts.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/importhosts.sh)
-* [import_rewrite_rules.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_rewrite_rules.sh)
+* [import_pmm.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/import_pmm.sh)
+* [import_att.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/import_att.sh)
+* [templates.zip](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/templates.zip)
+* [importhosts.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/importhosts.sh)
+* [import_rewrite_rules.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/import_rewrite_rules.sh)
 
 Note: SSH is locked down, but once logged in to the console, it will allow to pull files from another server.
 
@@ -174,7 +174,7 @@ THIS HAS TO BE DONE BEFORE ANY USER LOGS IN.
 
 NEEDS TO BE DONE AGAINST AN EMPTY PMM DATABASE.
 
-With the zip file from the export process, run the script [import_pmm.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_pmm.sh)
+With the zip file from the export process, run the script [import_pmm.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/import_pmm.sh)
 After the script runs, the internal import process should kick in and your dropped files will disappear.  You can query the tables with the following commands to verify that it has finished:
 
 ```bash
@@ -185,7 +185,7 @@ You can verify the successful import in the Gateway UI under System > PMM Settin
 
 ## __Import Attachment Blocking policies and MediaType Templates rules__
 
-Run the script: [import_att.sh](https://bitbucket.netmail.com/projects/PUB/repos/migrations/raw/clearswift/import_att.sh)
+Run the script: [import_att.sh](https://raw.githubusercontent.com/NetGovern/migrations/master/clearswift/import_att.sh)
 
 It will copy the policy files and restart tomcat. After the script runs, the new policies need to be applied/confirmed from the UI. 
 
